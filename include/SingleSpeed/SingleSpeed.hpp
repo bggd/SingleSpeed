@@ -15,11 +15,14 @@
   #include <OpenGL/gl.h>
 #endif
 
+#include <string>
+#include <vector>
 
 #include "linmath.h"
 
 #include "event.hpp"
 #include "core_events.hpp"
+#include "window_settings.hpp"
 #include "app.hpp"
 #include "shader.hpp"
 #include "gl_wrap.hpp"

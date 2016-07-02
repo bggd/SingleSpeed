@@ -1,6 +1,4 @@
-//#pragma once
-
-#include <vector>
+#pragma once
 
 
 struct App {
@@ -63,12 +61,12 @@ struct AppStack {
   };
 
   template <typename T>
-  static void run()
+  static void run(const WindowSettings& settings)
   {
     AppStack::push<PreOpenWindow<T>>();
-    AppStack::run();
+    AppStack::run(settings);
   }
 
   private:
-    static void run();
+    static void run(const WindowSettings& settings);
 };

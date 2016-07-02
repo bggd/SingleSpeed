@@ -31,7 +31,7 @@ void process_event(SDL_Event& ev)
   }
 }
 
-void AppStack::run()
+void AppStack::run(const WindowSettings& settings)
 {
   SDL_LogSetAllPriority(SDL_LOG_PRIORITY_VERBOSE);
 
@@ -49,7 +49,7 @@ void AppStack::run()
   SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
   SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 0);
 
-  window = SDL_CreateWindow("", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 640, 480, SDL_WINDOW_OPENGL);
+  window = SDL_CreateWindow(settings.title.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, settings.width, settings.height, SDL_WINDOW_OPENGL);
   if (window == NULL) goto game_over;
   glcontext = SDL_GL_CreateContext(window);
   if (glcontext == NULL) goto game_over;
