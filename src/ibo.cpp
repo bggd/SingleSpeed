@@ -22,9 +22,7 @@ void IBO::unbind()
 
 void IBO::buffer_data(const void* vertices, size_t size, GLenum usage)
 {
-  this->bind();
   glBufferData(GL_ELEMENT_ARRAY_BUFFER, size, vertices, usage);
-  this->unbind();
 }
 
 void IBO::draw_elements(GLenum mode, GLsizei count, GLenum type, const GLvoid* indices)
