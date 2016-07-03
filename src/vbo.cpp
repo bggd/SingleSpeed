@@ -25,7 +25,7 @@ void VBO::vertex_attrib_pointer(GLuint location, GLuint size, GLenum type, GLboo
   glVertexAttribPointer(location, size, type, normalized, stride, offset);
 }
 
-void VBO::buffer_data(const void* vertices, size_t size, GLenum usage)
+void VBO::buffer_data(size_t size, const void* vertices, GLenum usage)
 {
   glBufferData(GL_ARRAY_BUFFER, size, vertices, usage);
 }

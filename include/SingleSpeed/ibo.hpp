@@ -19,7 +19,7 @@ struct IBO {
   void bind();
   void unbind();
 
-  void buffer_data(const void* vertices, size_t size, GLenum usage);
+  void buffer_data(size_t size, const void* vertices, GLenum usage);
 
   void draw_elements(GLenum mode, GLsizei count, GLenum type, const GLvoid* indices);
 

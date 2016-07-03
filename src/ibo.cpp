@@ -20,7 +20,7 @@ void IBO::unbind()
   glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 }
 
-void IBO::buffer_data(const void* vertices, size_t size, GLenum usage)
+void IBO::buffer_data(size_t size, const void* vertices, GLenum usage)
 {
   glBufferData(GL_ELEMENT_ARRAY_BUFFER, size, vertices, usage);
 }

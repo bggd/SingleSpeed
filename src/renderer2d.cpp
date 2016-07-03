@@ -71,8 +71,8 @@ void Renderer2D::bind()
 
   gl::enable(GL_SCISSOR_TEST);
 
-  gl::enable(GL_CULL_FACE);
-  gl::cull_face(GL_BACK);
+  //gl::enable(GL_CULL_FACE);
+  //gl::cull_face(GL_BACK);
 
   this->shader.bind();
   gl::enable_vertex_attrib_array(Renderer2D::POSITION);

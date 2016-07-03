@@ -1,6 +1,8 @@
 *.bat
 *.png
+addons
 app
 app2d
 appListener
+appImgui
 Debug
