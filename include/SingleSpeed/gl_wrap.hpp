@@ -16,6 +16,8 @@ void disable(GLenum cap);
 
 void cull_face(GLenum mode);
 
+void scissor(GLint x, GLint y, GLsizei width, GLsizei height);
+
 void blend_equation(GLenum mode);
 void blend_equation_separate(GLenum modeRGB, GLenum modeAlpha);
 void blend_func(GLenum sfactor, GLenum dfactor);

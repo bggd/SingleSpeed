@@ -40,6 +40,11 @@ void cull_face(GLenum mode)
   glCullFace(mode);
 }
 
+void scissor(GLint x, GLint y, GLsizei width, GLsizei height)
+{
+  glScissor(x, y, width, height);
+}
+
 void blend_equation(GLenum mode)
 {
   glBlendEquation(mode);
