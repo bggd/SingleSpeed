@@ -44,10 +44,11 @@ void AppStack::run(const WindowSettings& settings)
   //SDL_GL_LoadLibrary(NULL);
 
   SDL_GL_SetAttribute(SDL_GL_CONTEXT_FLAGS, SDL_GL_CONTEXT_DEBUG_FLAG);
-  SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_ES);
-  //SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
-  SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 2);
-  SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 0);
+  //SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_ES);
+  SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+  //SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_COMPATIBILITY);
+  SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+  SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
 
   window = SDL_CreateWindow(settings.title.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, settings.width, settings.height, SDL_WINDOW_OPENGL);
   if (window == NULL) goto game_over;
@@ -56,20 +57,34 @@ void AppStack::run(const WindowSettings& settings)
 
   SDL_GL_MakeCurrent(window, glcontext);
 
-  int profile, major, minor;
+  int profile;
   SDL_GL_GetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, &profile);
-  if (profile != SDL_GL_CONTEXT_PROFILE_ES) std::cout << "failed creation ES 2.0 context\n";
-  SDL_GL_GetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, &major);
-  SDL_GL_GetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, &minor);
+  GLInfo::is_gles2 = (profile == SDL_GL_CONTEXT_PROFILE_ES);
+  std::cout <<  GLInfo::is_gles2 << '\n';
+  SDL_GL_GetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, &GLInfo::major);
+  SDL_GL_GetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, &GLInfo::minor);
 
-  if (!gladLoadGLES2Loader((GLADloadproc)SDL_GL_GetProcAddress)) goto game_over;
+  if (GLInfo::is_gles2) {
+    if (!gladLoadGLES2Loader((GLADloadproc)SDL_GL_GetProcAddress)) goto game_over;
+  }
+  else {
+    if (!gladLoadGLLoader((GLADloadproc)SDL_GL_GetProcAddress)) goto game_over;
+  }
+
   if (!SDL_GL_SetSwapInterval(-1)) SDL_GL_SetSwapInterval(1);
 
-  std::cout << major << "." << minor << std::endl;
+  std::cout << GLInfo::major << "." << GLInfo::minor << std::endl;
   std::cout << GLVersion.major << "." << GLVersion.minor << std::endl;
 
   glDebugMessageCallback(gl_debug_cb, NULL);
   glEnable(GL_DEBUG_OUTPUT);
+
+  GLuint VAO;
+
+  if (!GLInfo::is_gles2) {
+    glGenVertexArrays(1, &VAO);
+    glBindVertexArray(VAO);
+  }
 
   for (;;) {
     if (AppStack::current == nullptr) break;
@@ -93,5 +108,10 @@ void AppStack::run(const WindowSettings& settings)
   }
 
 game_over:
+
+  if (!GLInfo::is_gles2) {
+    glDeleteVertexArrays(1, &VAO);
+  }
+
   SDL_Quit();
 }

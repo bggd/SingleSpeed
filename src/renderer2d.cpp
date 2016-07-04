@@ -1,44 +1,31 @@
+extern std::string render2d_gles2_vert;
+extern std::string render2d_gles2_frag;
+extern std::string render2d_gl3_vert;
+extern std::string render2d_gl3_frag;
+
 Renderer2D::Renderer2D()
 {
-  std::string vert = R"(
-#version 100
+  std::string version = "#version ";
+  std::string vert;
+  std::string frag;
 
-uniform mat4 projection;
-
-attribute vec2 position;
-attribute vec2 uv;
-attribute vec4 color;
-
-varying vec4 vColor;
-varying vec2 vUV;
-
-void main()
-{
-  vColor = color;
-  vUV = uv;
-  gl_Position = projection * vec4(position, 0.0, 1.0);
-}
-)";
-
-  std::string frag = R"(
-#version 100
-
-uniform sampler2D tex;
-
-varying vec4 vColor;
-varying vec2 vUV;
-
-void main()
-{
-  gl_FragColor = texture2D(tex, vUV) * vColor;
-}
-)";
+  if (GLInfo::is_gles2) {
+    version += "100\n";
+    vert = version + render2d_gles2_vert;
+    frag = version + render2d_gles2_frag;
+  }
+  else {
+    if (GLInfo::major == 3 && GLInfo::minor == 3) version += "330";
+    vert = version + render2d_gl3_vert;
+    frag = version + render2d_gl3_frag;
+  }
 
   this->shader.compile(GL_VERTEX_SHADER, vert.c_str());
   this->shader.compile(GL_FRAGMENT_SHADER, frag.c_str());
   this->shader.bind_attr(Renderer2D::POSITION, "position");
   this->shader.bind_attr(Renderer2D::UV, "uv");
   this->shader.bind_attr(Renderer2D::COLOR, "color");
+  if (!GLInfo::is_gles2) glBindFragDataLocation(this->shader.program, 0, "fragColor");
   this->shader.link();
 
   this->shader.bind();
@@ -66,8 +53,10 @@ void Renderer2D::bind()
 {
   // set alpha blending
   gl::enable(GL_BLEND);
-  gl::blend_equation_separate(GL_FUNC_ADD, GL_FUNC_ADD);
-  gl::blend_func_separate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+  //gl::blend_equation_separate(GL_FUNC_ADD, GL_FUNC_ADD);
+  //gl::blend_func_separate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+  gl::blend_equation(GL_FUNC_ADD);
+  gl::blend_func(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
   gl::enable(GL_SCISSOR_TEST);
 

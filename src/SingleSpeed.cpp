@@ -7,15 +7,17 @@
 #include <iostream>
 #include <string>
 
-#include "../include/SingleSpeed/SingleSpeed.hpp"
-
+#define SINGLE_SPEED_BUILDINDG
 #include "../dependencies/glad/include/glad/glad.h"
+#include "../include/SingleSpeed/SingleSpeed.hpp"
 
 #include "event.cpp"
 #include "core_events.cpp"
 #include "shader.cpp"
 #include "gl_wrap.cpp"
+#include "gl_info.cpp"
 #include "renderer2d.cpp"
+#include "renderer2d_glsl.cpp"
 #include "vbo.cpp"
 #include "ibo.cpp"
 #include "fbo.cpp"
