@@ -1,5 +1,6 @@
 *.bat
 *.png
+imgui.ini
 addons
 app
 app2d
