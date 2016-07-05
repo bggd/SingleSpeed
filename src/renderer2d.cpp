@@ -10,7 +10,7 @@ Renderer2D::Renderer2D()
   std::string frag;
 
   if (GLInfo::is_gles2) {
-    version += "100\n";
+    version += "100";
     vert = version + render2d_gles2_vert;
     frag = version + render2d_gles2_frag;
   }
@@ -20,12 +20,14 @@ Renderer2D::Renderer2D()
     frag = version + render2d_gl3_frag;
   }
 
+  std::cout << vert << std::endl;
+
   this->shader.compile(GL_VERTEX_SHADER, vert.c_str());
   this->shader.compile(GL_FRAGMENT_SHADER, frag.c_str());
   this->shader.bind_attr(Renderer2D::POSITION, "position");
   this->shader.bind_attr(Renderer2D::UV, "uv");
   this->shader.bind_attr(Renderer2D::COLOR, "color");
-  if (!GLInfo::is_gles2) glBindFragDataLocation(this->shader.program, 0, "fragColor");
+  this->shader.bind_frag_data_location(0, "fragColor");
   this->shader.link();
 
   this->shader.bind();

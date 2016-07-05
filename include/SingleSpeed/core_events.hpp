@@ -26,10 +26,9 @@ struct MouseEventArgs : EventArgs {
 
 struct CoreEvents {
 
-  static CoreEvents events;
-
-  Event<MouseEventArgs> mouse_pressed;
-  Event<MouseEventArgs> mouse_moved;
-  Event<MouseEventArgs> mouse_released;
+  static Event<MouseEventArgs> mouse_pressed;
+  static Event<MouseEventArgs> mouse_moved;
+  static Event<MouseEventArgs> mouse_released;
+  static Event<MouseEventArgs> mouse_scrolled;
 
 };

@@ -13,21 +13,28 @@ void process_event(SDL_Event& ev)
     arg.type = MouseEventArgs::Type::Moved;
     arg.x = ev.motion.x;
     arg.y = ev.motion.y;
-    CoreEvents::events.mouse_moved.notify(arg);
+    CoreEvents::mouse_moved.notify(arg);
   }
   else if (ev.type == SDL_MOUSEBUTTONDOWN) {
     MouseEventArgs arg;
     arg.type = MouseEventArgs::Type::Pressed;
     arg.x = ev.button.x;
     arg.y = ev.button.y;
-    CoreEvents::events.mouse_pressed.notify(arg);
+    CoreEvents::mouse_pressed.notify(arg);
   }
   else if (ev.type == SDL_MOUSEBUTTONUP) {
     MouseEventArgs arg;
     arg.type = MouseEventArgs::Type::Released;
     arg.x = ev.button.x;
     arg.y = ev.button.y;
-    CoreEvents::events.mouse_released.notify(arg);
+    CoreEvents::mouse_released.notify(arg);
+  }
+  else if (ev.type == SDL_MOUSEWHEEL) {
+    MouseEventArgs arg;
+    arg.type = MouseEventArgs::Scrolled;
+    arg.scroll_x = ev.wheel.x;
+    arg.scroll_y = ev.wheel.y;
+    CoreEvents::mouse_scrolled.notify(arg);
   }
 }
 
@@ -43,12 +50,16 @@ void AppStack::run(const WindowSettings& settings)
   //SDL_GL_UnloadLibrary();
   //SDL_GL_LoadLibrary(NULL);
 
+  SDL_GL_SetAttribute(SDL_GL_FRAMEBUFFER_SRGB_CAPABLE, 1);
   SDL_GL_SetAttribute(SDL_GL_CONTEXT_FLAGS, SDL_GL_CONTEXT_DEBUG_FLAG);
-  //SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_ES);
-  SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+
+  if (settings.gles)
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_ES);
+  else
+    SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
   //SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_COMPATIBILITY);
-  SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
-  SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
+  SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, settings.major);
+  SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, settings.minor);
 
   window = SDL_CreateWindow(settings.title.c_str(), SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, settings.width, settings.height, SDL_WINDOW_OPENGL);
   if (window == NULL) goto game_over;
@@ -78,6 +89,9 @@ void AppStack::run(const WindowSettings& settings)
 
   glDebugMessageCallback(gl_debug_cb, NULL);
   glEnable(GL_DEBUG_OUTPUT);
+
+  if (GLInfo::is_gles2) glDisable(GL_FRAMEBUFFER_SRGB);
+  //glEnable(GL_FRAMEBUFFER_SRGB);
 
   GLuint VAO;
 

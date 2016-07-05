@@ -7,4 +7,8 @@ struct WindowSettings {
   int width;
   int height;
 
+  bool gles;
+  int major;
+  int minor;
+
 };
