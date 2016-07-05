@@ -85,6 +85,13 @@ void Shader::uniform_mat4(GLint location, GLsizei count, const GLfloat* v)
   glUniformMatrix4fv(location, count, GL_FALSE, v);
 }
 
+void Shader::bind_frag_data_location(GLuint color_number, const char* name)
+{
+  if (!GLInfo::is_gles2) {
+    glBindFragDataLocation(this->program, color_number, name);
+  }
+}
+
 void Shader::bind()
 {
   glUseProgram(this->program);
