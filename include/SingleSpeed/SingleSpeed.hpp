@@ -1,18 +1,14 @@
 #pragma once
 
 #ifndef SINGLE_SPEED_BUILDINDG
-  #ifdef _WIN32
-    #ifndef WIN32_LEAN_AND_MEAN
-      #define WIN32_LEAN_AND_MEAN
-      #define SINGLESPEED_USE_WIN32_LEAN_AND_MEAN
-    #endif
-    #include <windows.h>
-    #include <GL/gl.h>
-    #ifdef SINGLESPEED_USE_WIN32_LEAN_AND_MEAN
-      #undef WIN32_LEAN_AND_MEAN
-    #endif
+  #ifdef __APPLE__
+    #include <OpenGL/gl.h> 
   #else
-    #include <OpenGL/gl.h>
+    #ifdef _WIN32
+      #define WIN32_LEAN_AND_MEAN
+      #include <windows.h>
+    #endif
+    #include <gl/gl.h>
   #endif
 #endif
 
