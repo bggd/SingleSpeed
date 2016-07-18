@@ -1,4 +1,7 @@
 std::string render2d_gles2_vert = R"(
+
+precision mediump float;
+
 uniform mat4 projection;
 
 attribute vec2 position;
@@ -17,6 +20,9 @@ void main()
 )";
 
 std::string render2d_gles2_frag = R"(
+
+precision mediump float;
+
 uniform sampler2D tex;
 
 varying vec4 vColor;
