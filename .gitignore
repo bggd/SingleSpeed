@@ -1,7 +1,7 @@
 *.bat
 *.png
 imgui.ini
-addons
+addons/dear_imgui/libs
 app
 app2d
 appListener
