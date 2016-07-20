@@ -5,8 +5,8 @@ struct App {
   virtual void setup() {}
   virtual void teardown() {}
 
-  virtual void enter_scene() {}
-  virtual void exit_scene() {}
+  virtual void enter_app() {}
+  virtual void exit_app() {}
 
   virtual void enter_frame() {}
   virtual void exit_frame() {}
@@ -25,23 +25,23 @@ struct AppStack {
   template <typename T>
   static void push()
   {
-    if (AppStack::current) AppStack::current->exit_scene();
+    if (AppStack::current) AppStack::current->exit_app();
     AppStack::stack.emplace_back(std::move(new T));
     AppStack::current = AppStack::stack.back();
     AppStack::current->setup();
-    AppStack::current->enter_scene();
+    AppStack::current->enter_app();
   }
 
   static void pop()
   {
-    AppStack::current->exit_scene();
+    AppStack::current->exit_app();
     AppStack::current->teardown();
     delete AppStack::current;
     AppStack::current = nullptr;
     AppStack::stack.pop_back();
     if (!AppStack::stack.empty()) {
       AppStack::current = AppStack::stack.back();
-      AppStack::current->enter_scene();
+      AppStack::current->enter_app();
     }
   }
 
@@ -64,9 +64,9 @@ struct AppStack {
   static void run(const WindowSettings& settings)
   {
     AppStack::push<PreOpenWindow<T>>();
-    AppStack::run(settings);
+    AppStack::_start_game_loop(settings);
   }
 
   private:
-    static void run(const WindowSettings& settings);
+    static void _start_game_loop(const WindowSettings& settings);
 };

@@ -38,7 +38,7 @@ void process_event(SDL_Event& ev)
   }
 }
 
-void AppStack::run(const WindowSettings& settings)
+void AppStack::_start_game_loop(const WindowSettings& settings)
 {
   SDL_LogSetAllPriority(SDL_LOG_PRIORITY_VERBOSE);
 
