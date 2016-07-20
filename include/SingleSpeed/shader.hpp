@@ -22,4 +22,7 @@ struct Shader {
   void bind();
   void unbind();
 
+  static GLenum VERTEX;
+  static GLenum FRAGMENT;
+
 };

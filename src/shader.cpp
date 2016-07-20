@@ -101,3 +101,6 @@ void Shader::unbind()
 {
   glUseProgram(0);
 }
+
+GLenum Shader::VERTEX = GL_VERTEX_SHADER;
+GLenum Shader::FRAGMENT = GL_FRAGMENT_SHADER;
