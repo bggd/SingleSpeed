@@ -4,6 +4,7 @@ imgui.ini
 addons/dear_imgui/libs/imgui
 app
 app2d
+app3d
 appListener
 appImgui
 Debug

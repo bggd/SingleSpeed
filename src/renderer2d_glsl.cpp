@@ -1,4 +1,4 @@
-std::string render2d_gles2_vert = R"(
+std::string renderer2d_gles2_vert = R"(
 
 precision mediump float;
 
@@ -19,7 +19,7 @@ void main()
 }
 )";
 
-std::string render2d_gles2_frag = R"(
+std::string renderer2d_gles2_frag = R"(
 
 precision mediump float;
 
@@ -34,7 +34,7 @@ void main()
 }
 )";
 
-std::string render2d_gl3_vert = R"(
+std::string renderer2d_gl3_vert = R"(
 uniform mat4 projection;
 
 in vec2 position;
@@ -52,7 +52,7 @@ void main()
 }
 )";
 
-std::string render2d_gl3_frag = R"(
+std::string renderer2d_gl3_frag = R"(
 uniform sampler2D tex;
 
 in vec4 vColor;

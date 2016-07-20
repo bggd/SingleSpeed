@@ -1,7 +1,7 @@
-extern std::string render2d_gles2_vert;
-extern std::string render2d_gles2_frag;
-extern std::string render2d_gl3_vert;
-extern std::string render2d_gl3_frag;
+extern std::string renderer2d_gles2_vert;
+extern std::string renderer2d_gles2_frag;
+extern std::string renderer2d_gl3_vert;
+extern std::string renderer2d_gl3_frag;
 
 Renderer2D::Renderer2D()
 {
@@ -11,13 +11,13 @@ Renderer2D::Renderer2D()
 
   if (GLInfo::is_gles2) {
     version += "100";
-    vert = version + render2d_gles2_vert;
-    frag = version + render2d_gles2_frag;
+    vert = version + renderer2d_gles2_vert;
+    frag = version + renderer2d_gles2_frag;
   }
   else {
     if (GLInfo::major == 3 && GLInfo::minor == 3) version += "330";
-    vert = version + render2d_gl3_vert;
-    frag = version + render2d_gl3_frag;
+    vert = version + renderer2d_gl3_vert;
+    frag = version + renderer2d_gl3_frag;
   }
 
   std::cout << vert << std::endl;
