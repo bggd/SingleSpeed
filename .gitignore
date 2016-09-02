@@ -7,4 +7,6 @@ app2d
 app3d
 appListener
 appImgui
+appFreetype
+appThread
 Debug

@@ -17,6 +17,7 @@
 
 #include "linmath.h"
 
+#include "thread_channel.hpp"
 #include "event.hpp"
 #include "core_events.hpp"
 #include "window_settings.hpp"
