@@ -7,7 +7,7 @@
 #include <iostream>
 #include <string>
 
-#define SINGLE_SPEED_BUILDINDG
+#define SINGLE_SPEED_BUILDING
 #include "../dependencies/glad/include/glad/glad.h"
 #include "../include/SingleSpeed/SingleSpeed.hpp"
 

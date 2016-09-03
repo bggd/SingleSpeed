@@ -1,6 +1,6 @@
 #pragma once
 
-#ifndef SINGLE_SPEED_BUILDINDG
+#ifndef SINGLE_SPEED_BUILDING
   #ifdef __APPLE__
     #include <OpenGL/gl.h> 
   #else
