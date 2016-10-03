@@ -1,5 +1,6 @@
 *.bat
 *.png
+*.txt
 imgui.ini
 addons/dear_imgui/libs/imgui
 app
@@ -10,3 +11,4 @@ appImgui
 appFreetype
 appThread
 Debug
+build
