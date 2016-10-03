@@ -87,7 +87,7 @@ void AppStack::_start_game_loop(const WindowSettings& settings)
   std::cout << GLInfo::major << "." << GLInfo::minor << std::endl;
   std::cout << GLVersion.major << "." << GLVersion.minor << std::endl;
 
-  glDebugMessageCallback(gl_debug_cb, NULL);
+  glDebugMessageCallback((GLDEBUGPROC)gl_debug_cb, NULL);
   glEnable(GL_DEBUG_OUTPUT);
 
   if (GLInfo::is_gles2) glDisable(GL_FRAMEBUFFER_SRGB);
