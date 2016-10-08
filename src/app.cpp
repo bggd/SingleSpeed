@@ -1,3 +1,6 @@
+namespace ss {
+
+
 App* AppStack::current = nullptr;
 std::vector<App*> AppStack::stack;
 
@@ -129,3 +132,6 @@ game_over:
 
   SDL_Quit();
 }
+
+
+} // namespace ss

@@ -1,3 +1,6 @@
+namespace ss {
+
+
 FBO::FBO() : id_depth(0)
 {
   glGenFramebuffers(1, &this->id);
@@ -35,3 +38,6 @@ void FBO::attach_depth(int width, int height)
 
   glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, this->id_depth);
 }
+
+
+} // namespace ss

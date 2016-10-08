@@ -1,6 +1,9 @@
 #pragma once
 
 
+namespace ss {
+
+
 struct EventArgs {
 };
 
@@ -32,3 +35,6 @@ struct CoreEvents {
   static Event<MouseEventArgs> mouse_scrolled;
 
 };
+
+
+} // namespace ss

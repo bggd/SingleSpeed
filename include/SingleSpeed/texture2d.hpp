@@ -1,6 +1,9 @@
 #pragma once
 
 
+namespace ss {
+
+
 struct Texture2D {
 
   GLuint id;
@@ -25,3 +28,6 @@ struct Texture2D {
   void upload_rgba8(int width, int height, const unsigned char* image);
 
 };
+
+
+} // namespace ss

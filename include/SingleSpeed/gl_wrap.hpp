@@ -1,7 +1,9 @@
 #pragma once
 
 
+namespace ss {
 namespace gl {
+
 
 void viewport(GLint x, GLint y, GLsizei width, GLsizei height);
 
@@ -23,4 +25,6 @@ void blend_equation_separate(GLenum modeRGB, GLenum modeAlpha);
 void blend_func(GLenum sfactor, GLenum dfactor);
 void blend_func_separate(GLenum srcRGB, GLenum dstRGB, GLenum srcAlpha, GLenum dstAlpha);
 
+
 } // namespace gl
+} // namespace ss

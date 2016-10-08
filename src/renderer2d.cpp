@@ -1,3 +1,6 @@
+namespace ss {
+
+
 extern std::string renderer2d_gles2_vert;
 extern std::string renderer2d_gles2_frag;
 extern std::string renderer2d_gl3_vert;
@@ -81,3 +84,6 @@ void Renderer2D::unbind()
   gl::disable(GL_BLEND);
   gl::disable(GL_SCISSOR_TEST);
 }
+
+
+} // namespace ss

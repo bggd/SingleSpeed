@@ -1,4 +1,6 @@
+namespace ss {
 namespace gl {
+
 
 void viewport(GLint x, GLint y, GLsizei width, GLsizei height)
 {
@@ -65,4 +67,6 @@ void blend_func_separate(GLenum srcRGB, GLenum dstRGB, GLenum srcAlpha, GLenum d
   glBlendFuncSeparate(srcRGB, dstRGB, srcAlpha, dstAlpha);
 }
 
+
 } // namespace gl
+} // namespace ss

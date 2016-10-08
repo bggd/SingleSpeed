@@ -3,6 +3,9 @@
 #include <queue>
 
 
+namespace ss {
+
+
 template <typename T>
 struct ThreadChannel {
 
@@ -48,3 +51,6 @@ struct ThreadChannel {
   }
 
 };
+
+
+} // namespace ss

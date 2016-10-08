@@ -1,1 +1,1 @@
-uint_fast64_t EventListener::count = 0;
+uint_fast64_t ss::EventListener::count = 0;

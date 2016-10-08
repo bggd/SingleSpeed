@@ -1,3 +1,6 @@
+namespace ss {
+
+
 Texture2D::Texture2D()
 {
   glGenTextures(1, &this->id);
@@ -37,3 +40,6 @@ void Texture2D::upload_rgba8(int width, int height, const unsigned char* image)
   glTexImage2D(GL_TEXTURE_2D, 0, internal_format, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
   //glTexImage2D(GL_TEXTURE_2D, 0, GL_SRGB8_ALPHA8, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
 }
+
+
+} // namespace ss

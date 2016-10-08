@@ -1,3 +1,6 @@
+namespace ss {
+
+
 Shader::Shader() : program(0), vert(0), frag(0)
 {
   this->program = glCreateProgram();
@@ -104,3 +107,6 @@ void Shader::unbind()
 
 GLenum Shader::VERTEX = GL_VERTEX_SHADER;
 GLenum Shader::FRAGMENT = GL_FRAGMENT_SHADER;
+
+
+} // namespace ss

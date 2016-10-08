@@ -1,6 +1,9 @@
 #pragma once
 
 
+namespace ss {
+
+
 struct FBO {
 
   GLuint id;
@@ -24,3 +27,6 @@ struct FBO {
   void attach(const Texture2D& texture);
   void attach_depth(int width, int height);
 };
+
+
+} // namespace ss

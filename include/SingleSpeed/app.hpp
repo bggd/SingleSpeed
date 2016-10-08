@@ -1,6 +1,9 @@
 #pragma once
 
 
+namespace ss {
+
+
 struct App {
   virtual void setup() {}
   virtual void teardown() {}
@@ -14,7 +17,6 @@ struct App {
   virtual void update() {}
   virtual void draw() {}
 };
-
 
 
 struct AppStack {
@@ -70,3 +72,6 @@ struct AppStack {
   private:
     static void _start_game_loop(const WindowSettings& settings);
 };
+
+
+} // namespace ss

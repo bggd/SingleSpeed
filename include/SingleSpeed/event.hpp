@@ -6,6 +6,9 @@
 #include <vector>
 
 
+namespace ss {
+
+
 struct EventListener {
 
   static uint_fast64_t count;
@@ -73,3 +76,6 @@ struct Event {
   }
 
 };
+
+
+} // namespace ss

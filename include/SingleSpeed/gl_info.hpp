@@ -1,6 +1,9 @@
 #pragma once
 
 
+namespace ss {
+
+
 struct GLInfo {
 
   static int major;
@@ -9,3 +12,6 @@ struct GLInfo {
   static bool is_gles2;
 
 };
+
+
+} // namespace ss

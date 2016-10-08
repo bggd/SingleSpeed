@@ -1,6 +1,9 @@
 #pragma once
 
 
+namespace ss {
+
+
 struct IBO {
 
   GLuint id;
@@ -24,3 +27,6 @@ struct IBO {
   void draw_elements(GLenum mode, GLsizei count, GLenum type, const GLvoid* indices);
 
 };
+
+
+} // namespace ss

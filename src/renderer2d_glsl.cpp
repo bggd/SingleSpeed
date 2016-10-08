@@ -1,3 +1,6 @@
+namespace ss {
+
+
 std::string renderer2d_gles2_vert = R"(
 
 precision mediump float;
@@ -65,3 +68,6 @@ void main()
   fragColor = texture(tex, vUV) * vColor;
 }
 )";
+
+
+} // namespace ss

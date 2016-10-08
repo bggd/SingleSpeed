@@ -1,3 +1,6 @@
+namespace ss {
+
+
 IBO::IBO()
 {
   glGenBuffers(1, &this->id);
@@ -29,3 +32,6 @@ void IBO::draw_elements(GLenum mode, GLsizei count, GLenum type, const GLvoid* i
 {
   glDrawElements(mode, count, type, indices);
 }
+
+
+} // namespace ss

@@ -1,6 +1,9 @@
 #pragma once
 
 
+namespace ss {
+
+
 struct Shader {
 
   GLuint program;
@@ -26,3 +29,6 @@ struct Shader {
   static GLenum FRAGMENT;
 
 };
+
+
+} // namespace ss

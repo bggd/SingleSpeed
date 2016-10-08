@@ -1,6 +1,10 @@
 #pragma once
 
 
+
+namespace ss {
+
+
 struct VBO {
 
   GLuint id;
@@ -32,3 +36,6 @@ struct VBO {
   static const GLenum DYNAMIC_DRAW;
 
 };
+
+
+} // namespace ss

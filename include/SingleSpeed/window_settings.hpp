@@ -1,6 +1,9 @@
 #pragma once
 
 
+namespace ss {
+
+
 struct WindowSettings {
 
   std::string title;
@@ -12,3 +15,6 @@ struct WindowSettings {
   int minor;
 
 };
+
+
+} // namespace ss

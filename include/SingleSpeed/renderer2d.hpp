@@ -1,6 +1,9 @@
 #pragma once
 
 
+namespace ss {
+
+
 struct Renderer2D {
 
   Shader shader;
@@ -20,3 +23,6 @@ struct Renderer2D {
   void bind();
   void unbind();
 };
+
+
+} // namespace ss

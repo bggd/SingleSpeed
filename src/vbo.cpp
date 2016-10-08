@@ -1,3 +1,6 @@
+namespace ss {
+
+
 VBO::VBO()
 {
   glGenBuffers(1, &this->id);
@@ -38,3 +41,6 @@ void VBO::draw_arrays(GLenum mode, GLint first, GLsizei count)
 const GLenum VBO::STATIC_DRAW = GL_STATIC_DRAW;
 const GLenum VBO::STREAM_DRAW = GL_STREAM_DRAW;
 const GLenum VBO::DYNAMIC_DRAW = GL_DYNAMIC_DRAW;
+
+
+} // namespace ss
