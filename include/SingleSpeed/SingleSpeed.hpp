@@ -15,7 +15,7 @@
 #include <string>
 #include <vector>
 
-#include "linmath.h"
+#include "mat4.hpp"
 
 #include "thread_channel.hpp"
 #include "event.hpp"

@@ -18,7 +18,7 @@ struct Renderer2D {
 
   void clear();
 
-  void ortho(float left, float right, float bottom, float top, float nearVal, float farVal);
+  void ortho(float left, float right, float bottom, float top, float near_z, float far_z);
 
   void bind();
   void unbind();

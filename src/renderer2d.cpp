@@ -43,14 +43,13 @@ void Renderer2D::clear()
   gl::clear(GL_COLOR_BUFFER_BIT);
 }
 
-void Renderer2D::ortho(float left, float right, float bottom, float top, float nearVal, float farVal)
+void Renderer2D::ortho(float left, float right, float bottom, float top, float near_z, float far_z)
 {
-  mat4x4 ortho;
-  mat4x4_identity(ortho);
+  Mat4 m;
 
-  mat4x4_ortho(ortho, left, right, bottom, top, nearVal, farVal);
+  m = Mat4::ortho(left, right, bottom, top, near_z, far_z);
 
-  this->shader.uniform_mat4(this->projection_location, 1, (const GLfloat*)ortho);
+  this->shader.uniform_mat4(this->projection_location, 1, (const GLfloat*)m.elements);
 }
 
 
