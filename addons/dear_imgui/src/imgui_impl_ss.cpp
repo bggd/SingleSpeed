@@ -17,6 +17,8 @@
 #include <iostream>
 
 
+using namespace ss;
+
 static VBO* g_VboHandle = NULL;
 static IBO* g_ElementsHandle = NULL;
 static Texture2D* g_FontTexture = NULL;
