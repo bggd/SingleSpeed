@@ -15,6 +15,7 @@
 #include <string>
 #include <vector>
 
+#include "vec3.hpp"
 #include "mat4.hpp"
 
 #include "thread_channel.hpp"

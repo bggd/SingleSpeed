@@ -72,7 +72,6 @@ struct Mat4 {
     float a = 1.0f/tanf(y_fov/2.0f);
 
     Mat4 mat;
-
     mat.m00 = a/aspect;
     mat.m05 = a;
     mat.m10 = -((z_far+z_near)/(z_far-z_near));
@@ -81,6 +80,35 @@ struct Mat4 {
     mat.m15 = 0.0f;
 
     return mat;
+  }
+  
+  static Mat4 look_at(Vec3 position, Vec3 target, Vec3 up)
+  {
+    Vec3 forward;
+    forward = Vec3::normalize(Vec3::sub(target, position));
+
+    Vec3 side;
+    side = Vec3::normalize(Vec3::cross(forward, up));
+
+    up = Vec3::cross(side, forward);
+
+    Mat4 view;
+    view.m00 = side.x;
+    view.m04 = side.y;
+    view.m08 = side.z;
+    view.m01 = up.x;
+    view.m05 = up.y;
+    view.m09 = up.z;
+    view.m02 = -forward.x;
+    view.m06 = -forward.y;
+    view.m10 = -forward.z;
+
+    Mat4 trans;
+    trans.m12 = -position.x;
+    trans.m13 = -position.y;
+    trans.m14 = -position.z;
+
+    return Mat4::mul(view, trans);
   }
 
 };
