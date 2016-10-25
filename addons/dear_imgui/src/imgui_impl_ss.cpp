@@ -43,6 +43,11 @@ static void ImGui_ImplSS_RenderDrawLists(ImDrawData* draw_data)
     const ImDrawIdx* idx_buffer_offset = 0;
 
     g_VboHandle->bind();
+
+    g_VboHandle->vertex_attrib_pointer(Renderer2D::POSITION, 2, GL_FLOAT, GL_FALSE, sizeof(ImDrawVert), (const GLvoid*)offsetof(ImDrawVert, pos));
+    g_VboHandle->vertex_attrib_pointer(Renderer2D::UV, 2, GL_FLOAT, GL_FALSE, sizeof(ImDrawVert), (const GLvoid*)offsetof(ImDrawVert, uv));
+    g_VboHandle->vertex_attrib_pointer(Renderer2D::COLOR, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(ImDrawVert), (const GLvoid*)offsetof(ImDrawVert, col));
+
     g_VboHandle->buffer_data(cmd_list->VtxBuffer.size()*sizeof(ImDrawVert), &cmd_list->VtxBuffer.front(), VBO::STREAM_DRAW);
 
     g_ElementsHandle->bind();
@@ -116,11 +121,6 @@ bool ImGui_ImplSS_CreateDeviceObjects()
   io.Fonts->TexID = (void*)(intptr_t)g_FontTexture->id;
 
   g_VboHandle = new VBO;
-  g_VboHandle->bind();
-  g_VboHandle->vertex_attrib_pointer(Renderer2D::POSITION, 2, GL_FLOAT, GL_FALSE, sizeof(ImDrawVert), (const GLvoid*)offsetof(ImDrawVert, pos));
-  g_VboHandle->vertex_attrib_pointer(Renderer2D::UV, 2, GL_FLOAT, GL_FALSE, sizeof(ImDrawVert), (const GLvoid*)offsetof(ImDrawVert, uv));
-  g_VboHandle->vertex_attrib_pointer(Renderer2D::COLOR, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(ImDrawVert), (const GLvoid*)offsetof(ImDrawVert, col));
-  g_VboHandle->unbind();
   g_ElementsHandle = new IBO;
 
   g_MousePressed = CoreEvents::mouse_pressed.make_listener(

@@ -101,6 +101,7 @@ void AppStack::_start_game_loop(const WindowSettings& settings)
   if (!GLInfo::is_gles2) {
     glGenVertexArrays(1, &VAO);
     glBindVertexArray(VAO);
+    glBindVertexArray(0);
   }
 
   for (;;) {
@@ -115,8 +116,10 @@ void AppStack::_start_game_loop(const WindowSettings& settings)
 
     if (AppStack::current == nullptr) break;
     AppStack::current->update();
+    if (!GLInfo::is_gles2) glBindVertexArray(VAO);
     if (AppStack::current == nullptr) break;
     AppStack::current->draw();
+    if (!GLInfo::is_gles2) glBindVertexArray(0);
 
     SDL_GL_SwapWindow(window);
 
