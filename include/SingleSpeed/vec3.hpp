@@ -27,6 +27,11 @@ struct Vec3 {
     return {a.x-b.x, a.y-b.y, a.z-b.z};
   }
 
+  static Vec3 scale(Vec3 v, float s)
+  {
+    return {v.x*s, v.y*s, v.z*s};
+  }
+
   static float length(Vec3 v)
   {
     return sqrtf(Vec3::dot(v, v));
